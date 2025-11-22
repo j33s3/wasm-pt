@@ -42,10 +42,10 @@ jobs:
         shell: bash
 
       - name: Install deps
-        run: npm run install:vendors
+        run: bash ./intall-vendors
 
       - name: Build WASM
-        run: npm run build:wasm
+        run: bash ./build-wasm
   
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v2

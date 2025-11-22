@@ -1,0 +1,55 @@
+name: Release WASM
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: ./photoclub-frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/cache@v4
+        id: emsdk-cache
+        with:
+          path: |
+            emsdk
+            emsdk/upstream/emscripten/cache
+            emsdk/node
+          key: emsdk-latest-${{ runner.os }}
+
+      - name: Install Emscripten SDK (emsdk)
+        run: |
+          git clone https://github.com/emscripten-core/emsdk.git "$GITHUB_WORKSPACE/emsdk"
+          cd "$GITHUB_WORKSPACE/emsdk"
+          ./emsdk install latest
+          ./emsdk activate latest
+          echo "$PWD" >> $GITHUB_PATH
+          echo "$PWD/upstream/emscripten" >> $GITHUB_PATH
+        shell: bash
+
+      - name: Install deps
+        run: npm run install:vendors
+
+      - name: Build WASM
+        run: npm run build:wasm
+  
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            photoclub-frontend/src/lib/wasm/image_processor.wasm
+            photoclub-frontend/src/lib/wasm/image_processor.js

@@ -27,7 +27,7 @@ ls -R "$REPO_ROOT/deps/lib" || echo "❌ vendor libs not found"
 
 
 # # GLUE
-emcc scripts/image_processor.c \
+emcc image_processor.c \
 -o "$REPO_ROOT/src/lib/wasm/image_processor.js" \
 -I "$REPO_ROOT/deps/include/jpeg" \
 -I "$REPO_ROOT/deps/include/" \

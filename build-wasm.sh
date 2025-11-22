@@ -4,6 +4,7 @@ set -e
 # Find the repo root relative to the script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+CONTAINER_ROOT="$(cd "$REPO_ROOT/.." && pwd)"
 VENDOR_DIR="$REPO_ROOT/vendor"
 
 echo "Script Dir: $SCRIPT_DIR"
@@ -24,6 +25,9 @@ fi
 echo "Listing include folders:"
 ls -R "$VENDOR_DIR/deps/include" || echo "❌ vendor includes not found"
 ls -R "$VENDOR_DIR/deps/lib" || echo "❌ vendor libs not found"
+
+# Create output directory if it doesn't exist
+mkdir -p "$REPO_ROOT/src/lib/wasm"
 
 
 # # GLUE

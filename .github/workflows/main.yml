@@ -12,7 +12,7 @@ jobs:
       contents: write
     defaults:
       run:
-        working-directory: ./photoclub-frontend
+        working-directory: .
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -51,5 +51,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            photoclub-frontend/src/lib/wasm/image_processor.wasm
-            photoclub-frontend/src/lib/wasm/image_processor.js
+            src/lib/wasm/image_processor.wasm
+            src/lib/wasm/image_processor.js

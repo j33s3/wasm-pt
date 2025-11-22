@@ -42,7 +42,7 @@ jobs:
         shell: bash
 
       - name: Install deps
-        run: bash intall-vendors.sh
+        run: bash install-vendors.sh
 
       - name: Build WASM
         run: bash build-wasm.sh

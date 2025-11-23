@@ -47,6 +47,7 @@ emcc image_processor.c \
 -O3 
 
 ls -R src/
+ls -R $REPO_ROOT/src/
 
 echo "✅ WASM build complete"
 ls -lh src/lib/wasm/*.wasm || echo "❌ No WASM file found!"

@@ -46,8 +46,5 @@ emcc image_processor.c \
 -s EXPORT_NAME='createWasmModule' \
 -O3 
 
-ls -R src/
-ls -R $REPO_ROOT/src/
-
 echo "✅ WASM build complete"
-ls -lh src/lib/wasm/*.wasm || echo "❌ No WASM file found!"
+ls -lh $REPO_ROOT/src/lib/wasm/*.wasm || echo "❌ No WASM file found!"

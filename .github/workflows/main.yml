@@ -54,5 +54,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            wasm-pt/src/lib/wasm/image_processor.wasm
-            wasm-pt/src/lib/wasm/image_processor.js
+             /home/runner/work/wasm-pt/src/lib/wasm/image_processor.wasm
+             /home/runner/work/wasm-pt/src/lib/wasm/image_processor.js
